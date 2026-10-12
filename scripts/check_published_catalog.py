@@ -38,6 +38,7 @@ def main():
             return result.stdout
 
         version = run("-m", "hermes_cli.main", "--version")
+        assert "Hermes Agent v0.21.6" in version, version
         run("-m", "hermes_cli.main", "plugins", "search", "acedatacloud")
         info = run("-m", "hermes_cli.main", "plugins", "info", "acedatacloud")
         assert entry["sha"][:8] in info
