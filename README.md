@@ -2,11 +2,25 @@
 
 ![Ace Data Cloud](assets/catalog.png)
 
-Maintained by [Ace Data Cloud](https://acedata.cloud). This plugin adds **Ace Data
+Maintained by [Ace Data Cloud](https://platform.acedata.cloud?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_platform). This plugin adds **Ace Data
 Cloud** to Hermes's model and setup pickers using its public Chat Completions API.
 It requires Hermes 0.21.5 or later and is listed in the
 [official Hermes plugin catalog](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud)
 as a community plugin. It is installed separately and is not bundled with Hermes.
+
+## Get your Ace Data Cloud API key
+
+1. Open [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_api_key). Sign in, or register an account first.
+2. Find **General application**. If it has not been created, choose **Initialize General Application**. A general key can use the services available to your account; a dedicated application's key is limited to its service. Check the required service/model access and [current pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_pricing).
+3. Copy the **API Key** from the application card, or open **Keys / Manage Keys → Create** to create a separate key for this integration. Give it a recognizable name so you can revoke or rotate it independently.
+4. When creating a key, review **Expiration Time**, **Set Usage Limitation**, and **Allowed APIs**. Enable only the restrictions you need, allow the operations you will call, then click **Create** and copy the token from the key list. Task lookup does not grant permission to submit a generation. Confirm the application's balance can cover your first request; any trial allowance is whatever your account currently displays.
+5. Copy only the token value, without quotation marks, spaces, or `Bearer `. An API Key / API Token field expects this raw value; only a manually configured HTTP `Authorization` header needs the `Bearer ` prefix. A `platform-...` account-management token cannot replace a generation API key.
+
+![Copy an application API key or open Manage Keys](https://raw.githubusercontent.com/AceDataCloud/NanoBananaDify/2522b2f57210597af2db866445319334a1677a23/_assets/tutorial/get-api-key-en.png)
+
+![Create a separately named key with optional restrictions](https://raw.githubusercontent.com/AceDataCloud/NanoBananaDify/2522b2f57210597af2db866445319334a1677a23/_assets/tutorial/create-api-key-en.png)
+
+Save the key in the client's credential store or the environment variable shown below. Never put it in a prompt, shared workflow, screenshot, or Git commit. If authentication fails, check the full copied value, application/service access, expiration, usage limit, and balance before creating another key.
 
 ## Install and configure
 
@@ -15,9 +29,13 @@ hermes plugins install acedatacloud --enable
 hermes model
 ```
 
+The catalog installs its reviewed source commit. For the latest repository version,
+use `hermes plugins install AceDataCloud/AceDataCloudModelProviderHermes --enable`.
+Repository releases and catalog pin updates are published separately.
+
 Choose **Ace Data Cloud**, enter your API key, then select `gpt-4.1-mini` or
 `gpt-4.1`. Get a key from your application in the
-[Ace Data Cloud console](https://platform.acedata.cloud/console/applications).
+[Ace Data Cloud console](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_api_key).
 Enable the required chat service on that application. Keys scoped to other
 services cannot make chat requests.
 
@@ -48,7 +66,7 @@ or configurable reasoning. New model families will be added after validating
 their Hermes transport behavior.
 
 Calls use your Ace Data Cloud balance. See the
-[current model catalog and pricing](https://platform.acedata.cloud/models) and
+[current model catalog and pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_pricing) and
 your application's package rate. Hermes may not have an accurate cost estimate
 for this provider; the Ace Data Cloud usage and billing records are authoritative.
 
@@ -74,7 +92,7 @@ For rate limits, retry later. The plugin leaves API errors to Hermes's standard
 error handling rather than converting them into successful responses.
 
 Report plugin issues in this repository. Account and billing support is
-available through the [Ace Data Cloud console](https://platform.acedata.cloud).
+available through the [Ace Data Cloud console](https://platform.acedata.cloud?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_platform).
 
 ## Development
 
@@ -89,7 +107,7 @@ HERMES_SOURCE=/absolute/path/to/hermes-agent python -m unittest discover -s test
 Validate the installable plugin before publishing:
 
 ```sh
-hermes plugins validate /absolute/path/to/hermes-acedatacloud-provider --install-deps
+hermes plugins validate /absolute/path/to/AceDataCloudModelProviderHermes --install-deps
 ```
 
 Live checks use only disposable Hermes homes and explicitly supplied test keys.
