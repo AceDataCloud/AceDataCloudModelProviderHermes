@@ -15,6 +15,10 @@ import urllib.request
 
 def main():
     source = Path(os.environ["HERMES_SOURCE"]).resolve()
+    hermes_sha = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=source, text=True
+    ).strip()
+    assert hermes_sha == "818c13be1dc4fd28987e1e881a9408224afd4535", hermes_sha
     url = "https://hermes-agent.nousresearch.com/docs/api/plugin-catalog.json"
     with urllib.request.urlopen(url, timeout=30) as response:
         catalog = json.load(response)
@@ -38,7 +42,6 @@ def main():
             return result.stdout
 
         version = run("-m", "hermes_cli.main", "--version")
-        assert "Hermes Agent v0.21.6" in version, version
         run("-m", "hermes_cli.main", "plugins", "search", "acedatacloud")
         info = run("-m", "hermes_cli.main", "plugins", "info", "acedatacloud")
         assert entry["sha"][:8] in info
@@ -68,6 +71,7 @@ print(json.dumps({'provider': row, 'models': list(p.fallback_models),
                   'base_url': runtime['base_url'], 'api_mode': runtime['api_mode']}))
 """)
         print(json.dumps({"published_catalog_install": "passed", "version": version.strip(),
+                          "hermes_sha": hermes_sha,
                           "plugin_sha": sha, "tier": entry["tier"]}), flush=True)
 
 
