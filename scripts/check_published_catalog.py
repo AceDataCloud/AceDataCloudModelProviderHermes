@@ -18,7 +18,7 @@ def main():
     hermes_sha = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=source, text=True
     ).strip()
-    assert hermes_sha == "818c13be1dc4fd28987e1e881a9408224afd4535", hermes_sha
+    assert hermes_sha == os.environ["HERMES_EXPECTED_SHA"], hermes_sha
     url = "https://hermes-agent.nousresearch.com/docs/api/plugin-catalog.json"
     with urllib.request.urlopen(url, timeout=30) as response:
         catalog = json.load(response)

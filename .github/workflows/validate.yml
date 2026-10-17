@@ -11,6 +11,13 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        hermes:
+          - version: '0.21.6'
+            sha: '818c13be1dc4fd28987e1e881a9408224afd4535'
+          - version: '0.22.2'
+            sha: 'd923a5eb487a17c0a68801bba9ef0f56c81040a8'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: NousResearch/hermes-agent/.github/actions/plugin-validate@1d6b2786e2b2de70a967c66b6a14e2b83bab30e7
@@ -28,10 +35,11 @@ jobs:
         id: stable-python
         with:
           python-version: "3.14"
-      - name: Verify stable 0.21.6 with its own locked dependencies
+      - name: Verify stable release with its own locked dependencies
         shell: bash
         env:
           STABLE_PYTHON: ${{ steps.stable-python.outputs.python-path }}
+          STABLE_HERMES_SHA: ${{ matrix.hermes.sha }}
         run: |
           set -euo pipefail
           hermes_source=("$RUNNER_TEMP"/hermes-plugin-validator.*)
@@ -39,7 +47,7 @@ jobs:
           stable_source=$(mktemp -d "$RUNNER_TEMP/hermes-stable.XXXXXX")
           git -C "$stable_source" init
           git -C "$stable_source" remote add origin https://github.com/NousResearch/hermes-agent.git
-          git -C "$stable_source" fetch --depth=1 origin 818c13be1dc4fd28987e1e881a9408224afd4535
+          git -C "$stable_source" fetch --depth=1 origin "$STABLE_HERMES_SHA"
           git -C "$stable_source" checkout --detach FETCH_HEAD
           "$validator_python" -m pm.build_env --source "$stable_source" --out "$RUNNER_TEMP/hermes-stable-env" --python "$STABLE_PYTHON"
           stable_python="$RUNNER_TEMP/hermes-stable-env/bin/python"
@@ -51,6 +59,8 @@ jobs:
           "$stable_python" -m hermes_cli.main plugins validate "$GITHUB_WORKSPACE" --install-deps
       - name: Accept the published catalog on the stable release
         if: github.event_name == 'workflow_dispatch'
+        env:
+          HERMES_EXPECTED_SHA: ${{ matrix.hermes.sha }}
         shell: bash
         run: |
           set -euo pipefail
