@@ -1,9 +1,45 @@
 # Ace Data Cloud model provider for Hermes Agent
 
+![Ace Data Cloud](assets/catalog.png)
+
 Maintained by [Ace Data Cloud](https://platform.acedata.cloud?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_platform). This plugin adds **Ace Data
 Cloud** to Hermes's model and setup pickers using its public Chat Completions API.
-It requires Hermes 0.21.5 or later. Official Hermes catalog review is pending;
-this plugin is not bundled with Hermes.
+It requires Hermes 0.21.5 or later and is listed in the
+[official Hermes plugin catalog](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud)
+as a community plugin. It is installed separately and is not bundled with Hermes.
+
+## Native model selection and current distribution
+
+After this named provider plugin is installed, **Ace Data Cloud** appears in
+Hermes's own `hermes model` / setup picker. Choose it, enter your Ace API Token
+and select `gpt-4.1-mini` or `gpt-4.1`; the endpoint and Chat Completions transport
+are supplied by the profile. Users do not need to type an API base URL.
+
+This is an official-catalog **community plugin**, installed separately. A fresh
+Hermes installation does not list Ace until the plugin is installed: it is not
+bundled or enabled by default. Hermes's current
+[third-party integration policy](https://github.com/NousResearch/hermes-agent/blob/18c525b669b6ea4ba62e6967d228af21d89aa9d3/CONTRIBUTING.md#third-party-product-integrations-ship-as-a-standalone-plugin)
+requires new vendor integrations to remain standalone; the presence of older
+bundled providers is not approval for adding another vendor to core.
+
+The [official model configuration guide](https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models)
+shows the real Models → Change → provider/model picker. Its historical screenshots
+show other providers, not an Ace run. The named Ace picker and credential/endpoint
+resolution are validated against unmodified Hermes 0.21.6 and 0.22.2 in fresh profiles;
+this does not claim default bundling, a current GUI run, or new paid inference.
+
+For music, video and images, install the separate
+[Ace Data Cloud Media](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud-media)
+plugin and enable the service toolset you need. It supports service-name discovery
+and [Suno, Seedance, HappyHorse, GPT Image and Nano Banana guides](https://github.com/AceDataCloud/AceDataCloudMediaHermes#find-your-service).
+The model provider itself adds no media tools.
+
+![Edited preview of the Hermes model picker with Ace; not an actual runtime screenshot](assets/tutorial/hermes-model-picker-preview.png)
+
+**Official-screenshot edit preview, not an Ace execution screenshot.** Edited
+2026-10-17 from the official historical v0.11.0 screenshot (capture date unknown).
+It illustrates the provider/model picker after installation, not default bundling,
+new paid calls or current GUI validation. [Source and limits](assets/tutorial/SOURCE.md).
 
 ## Get your Ace Data Cloud API key
 
@@ -22,9 +58,13 @@ Save the key in the client's credential store or the environment variable shown 
 ## Install and configure
 
 ```sh
-hermes plugins install AceDataCloud/AceDataCloudModelProviderHermes --enable
+hermes plugins install acedatacloud --enable
 hermes model
 ```
+
+The catalog installs its reviewed source commit. For the latest repository version,
+use `hermes plugins install AceDataCloud/AceDataCloudModelProviderHermes --enable`.
+Repository releases and catalog pin updates are published separately.
 
 Choose **Ace Data Cloud**, enter your API key, then select `gpt-4.1-mini` or
 `gpt-4.1`. Get a key from your application in the
@@ -100,7 +140,7 @@ HERMES_SOURCE=/absolute/path/to/hermes-agent python -m unittest discover -s test
 Validate the installable plugin before publishing:
 
 ```sh
-hermes plugins validate /absolute/path/to/hermes-acedatacloud-provider --install-deps
+hermes plugins validate /absolute/path/to/AceDataCloudModelProviderHermes --install-deps
 ```
 
 Live checks use only disposable Hermes homes and explicitly supplied test keys.
