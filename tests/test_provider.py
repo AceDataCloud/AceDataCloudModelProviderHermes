@@ -61,6 +61,13 @@ from hermes_cli.models import list_available_providers
 p = get_provider_profile('acedatacloud')
 assert p is not None
 assert p.display_name == 'Ace Data Cloud'
+from urllib.parse import parse_qs, urlsplit
+signup = urlsplit(p.signup_url)
+assert signup.netloc == 'platform.acedata.cloud' and signup.path == '/console/applications'
+assert parse_qs(signup.query) == {
+    'utm_source': ['opensource'], 'utm_medium': ['referral'],
+    'utm_campaign': ['evergreen'], 'utm_content': ['hermes_model_picker_api_key'],
+}
 resolved = resolve_provider_full('acedatacloud')
 assert resolved.id == 'acedatacloud'
 assert resolved.base_url == 'https://api.acedata.cloud/openai'

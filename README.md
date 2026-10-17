@@ -8,6 +8,39 @@ It requires Hermes 0.21.5 or later and is listed in the
 [official Hermes plugin catalog](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud)
 as a community plugin. It is installed separately and is not bundled with Hermes.
 
+## Native model selection and current distribution
+
+After this named provider plugin is installed, **Ace Data Cloud** appears in
+Hermes's own `hermes model` / setup picker. Choose it, enter your Ace API Token
+and select `gpt-4.1-mini` or `gpt-4.1`; the endpoint and Chat Completions transport
+are supplied by the profile. Users do not need to type an API base URL.
+
+This is an official-catalog **community plugin**, installed separately. A fresh
+Hermes installation does not list Ace until the plugin is installed: it is not
+bundled or enabled by default. Hermes's current
+[third-party integration policy](https://github.com/NousResearch/hermes-agent/blob/18c525b669b6ea4ba62e6967d228af21d89aa9d3/CONTRIBUTING.md#third-party-product-integrations-ship-as-a-standalone-plugin)
+requires new vendor integrations to remain standalone; the presence of older
+bundled providers is not approval for adding another vendor to core.
+
+The [official model configuration guide](https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models)
+shows the real Models → Change → provider/model picker. Its historical screenshots
+show other providers, not an Ace run. The named Ace picker and credential/endpoint
+resolution are validated against unmodified Hermes 0.21.6 and 0.22.2 in fresh profiles;
+this does not claim default bundling, a current GUI run, or new paid inference.
+
+For music, video and images, install the separate
+[Ace Data Cloud Media](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud-media)
+plugin and enable the service toolset you need. It supports service-name discovery
+and [Suno, Seedance, HappyHorse, GPT Image and Nano Banana guides](https://github.com/AceDataCloud/AceDataCloudMediaHermes#find-your-service).
+The model provider itself adds no media tools.
+
+![Edited preview of the Hermes model picker with Ace; not an actual runtime screenshot](assets/tutorial/hermes-model-picker-preview.png)
+
+**Official-screenshot edit preview, not an Ace execution screenshot.** Edited
+2026-10-17 from the official historical v0.11.0 screenshot (capture date unknown).
+It illustrates the provider/model picker after installation, not default bundling,
+new paid calls or current GUI validation. [Source and limits](assets/tutorial/SOURCE.md).
+
 ## Get your Ace Data Cloud API key
 
 1. Open [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_api_key). Sign in, or register an account first.
