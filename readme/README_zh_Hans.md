@@ -6,7 +6,7 @@
 
 ## 1. 从正式目录安装
 
-打开[Hermes官方Ace模型页](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud)，核对AceDataCloud维护者。当前审核版本1.0.1，最低Hermes0.21.5。
+打开[Hermes官方Ace模型页](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud)，核对AceDataCloud维护者。本仓库版本为1.0.2，最低Hermes0.21.5。官方目录独立固定到审核commit，请以目录显示的版本和SHA为准。
 
 ```sh
 hermes plugins install acedatacloud --enable
@@ -63,4 +63,4 @@ hermes chat --provider acedatacloud --model gpt-4.1-mini --oneshot "Reply only O
 - 提示词、工具schema和结果发到公开Ace接口；API Key由Hermes管理。插件不读别的凭据、不运行shell/后台进程、不自更新或发送遥测。
 - 费用以[Ace当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=hermes_model_zh_readme_pricing)、你的实际package和权威账单为准；Hermes估算可能不准确，不用历史截图/测试次数换算营收。
 
-本中文源稿属于未合并模型PR#1。公开版本仍1.0.1，新文案/带来源参数的native signup链接需要source merge→release→官方审核pin后才生效。本轮仅补图文，无新增收费请求。
+本中文指南随源码版本1.0.2提供。GitHub源码发布与Hermes目录审核版本分开：按名称安装得到目录当前固定的commit，新文案和带来源参数的native signup链接只在该commit被目录采用后到达用户。升级时先查看目录版本与SHA，再运行`hermes plugins update acedatacloud`。本文没有发送新的付费请求。
