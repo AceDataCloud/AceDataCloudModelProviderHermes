@@ -1,5 +1,7 @@
 # Ace Data Cloud model provider for Hermes Agent
 
+[简体中文使用指南](readme/README_zh_Hans.md)
+
 ![Ace Data Cloud](assets/catalog.png)
 
 Maintained by [Ace Data Cloud](https://platform.acedata.cloud?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=acedatacloudmodelproviderhermes_readme_platform). This plugin adds **Ace Data
