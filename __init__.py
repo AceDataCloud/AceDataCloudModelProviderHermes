@@ -22,7 +22,9 @@ register_provider(
         name="acedatacloud",
         display_name="Ace Data Cloud",
         description="Ace Data Cloud — GPT models with streaming and tool calling",
-        signup_url="https://platform.acedata.cloud/console/applications",
+        signup_url=("https://platform.acedata.cloud/console/applications"
+                    "?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen"
+                    "&utm_content=hermes_model_picker_api_key"),
         env_vars=("ACEDATACLOUD_API_KEY",),
         base_url="https://api.acedata.cloud/openai",
         api_mode="chat_completions",
