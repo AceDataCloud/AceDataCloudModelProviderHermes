@@ -65,7 +65,7 @@ from urllib.parse import parse_qs, urlsplit
 signup = urlsplit(p.signup_url)
 assert signup.netloc == 'platform.acedata.cloud' and signup.path == '/console/applications'
 assert parse_qs(signup.query) == {
-    'utm_source': ['opensource'], 'utm_medium': ['referral'],
+    'utm_source': ['hermes'], 'utm_medium': ['referral'],
     'utm_campaign': ['evergreen'],
 }
 resolved = resolve_provider_full('acedatacloud')
