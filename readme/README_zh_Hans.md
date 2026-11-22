@@ -16,8 +16,8 @@ hermes plugins install acedatacloud --enable
 
 ## 2. 注册、登录并创建或复制Token
 
-1. 进入[Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=hermes_model_zh_readme_api_key)，注册或登录。
-2. 打开**General application**，没有时先点**Initialize General Application**。确认聊天模型服务访问权限、[当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=hermes_model_zh_readme_pricing)及余额。
+1. 进入[Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)，注册或登录。
+2. 打开**General application**，没有时先点**Initialize General Application**。确认聊天模型服务访问权限、[当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)及余额。
 3. 复制应用卡片上的**API Key**，或在**Manage Keys → Create**新建`Hermes models`专用Token，方便单独撤销。
 4. 检查有效期、消费限额、Allowed APIs；如限制API，需允许聊天及模型列表接口。通用应用Key按获准服务访问；其他专属服务Key未必有聊天权限。当前图不保证免费额度。
 5. 只填Token原文，不带`Bearer `、引号或空格；`platform-...`管理Token不是生成/聊天Key。
@@ -61,6 +61,6 @@ hermes chat --provider acedatacloud --model gpt-4.1-mini --oneshot "Reply only O
 - 模型缺失：只保留gpt-4.1-mini/gpt-4.1。catalog暂时不可达会显示同一已验证列表，不是自动模型fallback。
 - 429限流稍后处理，额度/余额错误先查账单；不把API错误改成成功结果，不发自动替换模型。
 - 提示词、工具schema和结果发到公开Ace接口；API Key由Hermes管理。插件不读别的凭据、不运行shell/后台进程、不自更新或发送遥测。
-- 费用以[Ace当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=hermes_model_zh_readme_pricing)、你的实际package和权威账单为准；Hermes估算可能不准确，不用历史截图/测试次数换算营收。
+- 费用以[Ace当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)、你的实际package和权威账单为准；Hermes估算可能不准确，不用历史截图/测试次数换算营收。
 
 本中文指南随源码版本1.0.2提供。GitHub源码发布与Hermes目录审核版本分开：按名称安装得到目录当前固定的commit，新文案和带来源参数的native signup链接只在该commit被目录采用后到达用户。升级时先查看目录版本与SHA，再运行`hermes plugins update acedatacloud`。本文没有发送新的付费请求。
