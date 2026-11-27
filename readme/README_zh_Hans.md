@@ -2,7 +2,7 @@
 
 [English](../README.md)
 
-安装官方目录中的Ace模型插件后，Hermes自己的模型/设置列表会显示**Ace Data Cloud**，可直接选gpt-4.1-mini或gpt-4.1，不用手填API地址。它是单独安装的community插件，**不是默认预装**。当前官方第三方产品准入[要求独立插件](https://github.com/NousResearch/hermes-agent/blob/18c525b669b6ea4ba62e6967d228af21d89aa9d3/CONTRIBUTING.md#third-party-product-integrations-ship-as-a-standalone-plugin)；旧内置OpenRouter等条目不等于Ace已获默认内置许可。
+安装官方目录中的Ace模型插件后，Hermes自己的模型/设置列表会显示**Ace Data Cloud**，可直接选 gpt-4.1-mini、gpt-4.1 或 gemini-4-neon，不用手填API地址。它是单独安装的community插件，**不是默认预装**。当前官方第三方产品准入[要求独立插件](https://github.com/NousResearch/hermes-agent/blob/18c525b669b6ea4ba62e6967d228af21d89aa9d3/CONTRIBUTING.md#third-party-product-integrations-ship-as-a-standalone-plugin)；旧内置OpenRouter等条目不等于Ace已获默认内置许可。
 
 ## 1. 从正式目录安装
 
@@ -34,7 +34,7 @@ hermes plugins install acedatacloud --enable
 hermes model
 ```
 
-选择**Ace Data Cloud**，在凭据输入位置粘贴自己的Key，再选**gpt-4.1-mini**或**gpt-4.1**。不要把Key写进聊天或Git。环境方式可将`ACEDATACLOUD_API_KEY`放入当前profile的secret `.env`，不放非secret `config.yaml`。
+选择**Ace Data Cloud**，在凭据输入位置粘贴自己的Key，再选**gpt-4.1-mini**、**gpt-4.1** 或 **gemini-4-neon**。不要把Key写进聊天或Git。环境方式可将`ACEDATACLOUD_API_KEY`放入当前profile的secret `.env`，不放非secret `config.yaml`。
 
 插件给出`https://api.acedata.cloud/openai`和`chat_completions`传输，不需要custom-provider YAML。安装后出现原生行不等于无需安装就默认可选。
 
@@ -50,7 +50,7 @@ hermes model
 hermes chat --provider acedatacloud --model gpt-4.1-mini --oneshot "Reply only OK"
 ```
 
-聊天直接返回文字，不返回媒体task_id。支持上述两模型的文本聊天、流式工具调用和工具结果续轮；模型列表只显示已验证项，不自动替换请求模型。不宣称全catalog、Responses、Messages、vision或可配置reasoning全支持。
+聊天直接返回文字，不返回媒体task_id。支持上述三个模型的文本聊天、流式工具调用和工具结果续轮；模型列表只显示已验证项，不自动替换请求模型。不宣称全catalog、Responses、Messages、vision或可配置reasoning全支持。
 
 若要Suno、Seedance、HappyHorse、GPT Image、Nano Banana，另安装[Ace媒体插件](https://hermes-agent.nousresearch.com/docs/plugins/acedatacloud-media)，选择对应toolset并阅读[中英媒体指引](https://github.com/AceDataCloud/AceDataCloudMediaHermes#find-your-service)。媒体生成只提交一次，保存task_id，pending时只查同ID；模型Provider本身不注册媒体工具，也没有媒体同ID查询接口。
 
@@ -58,7 +58,7 @@ hermes chat --provider acedatacloud --model gpt-4.1-mini --oneshot "Reply only O
 
 - 没有Ace行：检查已在当前profile安装插件，非其他profile；安装前默认不显示。
 - Key无效：检查原文、应用服务访问、聊天和模型列表API权限、有效期/限额/余额；别用媒体专属Key冒充聊天授权。
-- 模型缺失：只保留gpt-4.1-mini/gpt-4.1。catalog暂时不可达会显示同一已验证列表，不是自动模型fallback。
+- 模型缺失：只列出 gpt-4.1-mini、gpt-4.1 和 gemini-4-neon。catalog暂时不可达会显示同一已验证列表，不是自动模型fallback。
 - 429限流稍后处理，额度/余额错误先查账单；不把API错误改成成功结果，不发自动替换模型。
 - 提示词、工具schema和结果发到公开Ace接口；API Key由Hermes管理。插件不读别的凭据、不运行shell/后台进程、不自更新或发送遥测。
 - 费用以[Ace当前价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen)、你的实际package和权威账单为准；Hermes估算可能不准确，不用历史截图/测试次数换算营收。

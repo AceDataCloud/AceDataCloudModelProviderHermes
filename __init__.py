@@ -21,16 +21,17 @@ register_provider(
     AceDataCloudProfile(
         name="acedatacloud",
         display_name="Ace Data Cloud",
-        description="Ace Data Cloud — GPT models with streaming and tool calling",
+        description="Ace Data Cloud — GPT and Gemini models with streaming and tool calling",
         signup_url=("https://platform.acedata.cloud/console/applications"
                     "?utm_source=hermes&utm_medium=referral&utm_campaign=evergreen"),
         env_vars=("ACEDATACLOUD_API_KEY",),
         base_url="https://api.acedata.cloud/openai",
         api_mode="chat_completions",
         auth_type="api_key",
-        fallback_models=("gpt-4.1-mini", "gpt-4.1"),
+        fallback_models=("gpt-4.1-mini", "gpt-4.1", "gemini-4-neon"),
         model_capabilities={
             "gpt-4.1-mini": {"supports_tools": True, "supports_reasoning": False},
+            "gemini-4-neon": {"supports_tools": True, "supports_reasoning": True},
             "gpt-4.1": {"supports_tools": True, "supports_reasoning": False},
         },
     )
