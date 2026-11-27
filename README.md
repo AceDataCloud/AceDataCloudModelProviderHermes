@@ -14,7 +14,7 @@ as a community plugin. It is installed separately and is not bundled with Hermes
 
 After this named provider plugin is installed, **Ace Data Cloud** appears in
 Hermes's own `hermes model` / setup picker. Choose it, enter your Ace API Token
-and select `gpt-4.1-mini` or `gpt-4.1`; the endpoint and Chat Completions transport
+and select `gpt-4.1-mini`, `gpt-4.1` or `gemini-4-neon`; the endpoint and Chat Completions transport
 are supplied by the profile. Users do not need to type an API base URL.
 
 This is an official-catalog **community plugin**, installed separately. A fresh
@@ -68,8 +68,8 @@ The catalog installs its reviewed source commit. For the latest repository versi
 use `hermes plugins install AceDataCloud/AceDataCloudModelProviderHermes --enable`.
 Repository releases and catalog pin updates are published separately.
 
-Choose **Ace Data Cloud**, enter your API key, then select `gpt-4.1-mini` or
-`gpt-4.1`. Get a key from your application in the
+Choose **Ace Data Cloud**, enter your API key, then select `gpt-4.1-mini`,
+`gpt-4.1` or `gemini-4-neon`. Get a key from your application in the
 [Ace Data Cloud console](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen).
 Enable the required chat service on that application. Keys scoped to other
 services cannot make chat requests.
@@ -88,10 +88,10 @@ each Hermes profile that should use it.
 
 ## Supported models
 
-The picker offers `gpt-4.1-mini` and `gpt-4.1`. Both support text conversations,
+The picker offers `gpt-4.1-mini`, `gpt-4.1` and `gemini-4-neon`. All three support text conversations,
 streaming tool calls and subsequent tool-result turns. The plugin filters the
 live catalog to these tested models; if the catalog is unavailable, the same
-two IDs remain available in the picker. This is a picker list, not automatic
+three IDs remain available in the picker. This is a picker list, not automatic
 model substitution.
 
 Ace Data Cloud's shared `/models` response also contains image-generation and

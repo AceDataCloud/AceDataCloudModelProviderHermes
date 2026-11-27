@@ -62,11 +62,11 @@ p = get_provider_profile('acedatacloud')
 assert p is not None
 row = next(row for row in list_available_providers() if row['id'] == 'acedatacloud')
 assert row['label'] == 'Ace Data Cloud' and row['authenticated']
-runtime = resolve_runtime_provider(requested='acedatacloud', target_model='gpt-4.1-mini')
+runtime = resolve_runtime_provider(requested='acedatacloud', target_model='gemini-4-neon')
 assert runtime['provider'] == 'acedatacloud'
 assert runtime['api_mode'] == 'chat_completions'
 assert runtime['base_url'] == 'https://api.acedata.cloud/openai'
-assert set(p.fallback_models) == {'gpt-4.1-mini', 'gpt-4.1'}
+assert set(p.fallback_models) == {'gpt-4.1-mini', 'gpt-4.1', 'gemini-4-neon'}
 print(json.dumps({'provider': row, 'models': list(p.fallback_models),
                   'base_url': runtime['base_url'], 'api_mode': runtime['api_mode']}))
 """)

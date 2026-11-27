@@ -110,7 +110,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(json.dumps({'data': [{'id': name} for name in [
-            'gpt-image-2', 'gpt-4.1', 'claude-sonnet-5-5', 'gpt-4.1-mini',
+            'gpt-image-2', 'gpt-4.1', 'claude-sonnet-5-5', 'gpt-4.1-mini', 'gemini-4-neon',
             'unknown-new-model'
         ]]}).encode())
     def log_message(self, *args):
@@ -123,11 +123,11 @@ try:
     profile = get_provider_profile('acedatacloud')
     base = f'http://127.0.0.1:{server.server_port}'
     assert profile.fetch_models(api_key='catalog-test', base_url=base) == [
-        'gpt-4.1', 'gpt-4.1-mini'
+        'gpt-4.1', 'gpt-4.1-mini', 'gemini-4-neon'
     ]
     assert requests[0] == ('/models', 'Bearer catalog-test')
     assert profile.fetch_models(base_url=base + '/unavailable') is None
-    assert set(profile.fallback_models) == {'gpt-4.1', 'gpt-4.1-mini'}
+    assert set(profile.fallback_models) == {'gpt-4.1', 'gpt-4.1-mini', 'gemini-4-neon'}
     print('Live catalog excludes unsupported IDs, honors base URL, handles 503')
 finally:
     server.shutdown()
