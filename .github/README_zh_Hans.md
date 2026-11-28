@@ -19,7 +19,7 @@ hermes plugins install acedatacloud --enable
 ## 2. 注册、登录并创建或复制Token
 
 1. 进入[Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications?utm_source=github&utm_medium=referral&utm_campaign=evergreen)，注册或登录。
-2. 打开**General application**，没有时先点**Initialize General Application**。确认聊天模型服务访问权限、[当前价格](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen)及余额。
+2. 打开**通用应用（General Application）**。确认聊天模型服务访问权限、[当前价格](https://platform.acedata.cloud/models?utm_source=github&utm_medium=referral&utm_campaign=evergreen)及余额。
 3. 复制应用卡片上的**API Key**，或在**Manage Keys → Create**新建`Hermes models`专用Token，方便单独撤销。
 4. 检查有效期、消费限额、Allowed APIs；如限制API，需允许聊天及模型列表接口。通用应用Key按获准服务访问；其他专属服务Key未必有聊天权限。当前图不保证免费额度。
 5. 只填Token原文，不带`Bearer `、引号或空格；`platform-...`管理Token不是生成/聊天Key。
